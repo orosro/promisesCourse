@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="">
+
+    <style>
+        .section {
+            /*border: 1px solid #cecece;*/
+        }
+        .section-title {
+            font-size: 24px;
+        }
+
+       .main [class^="col"] {
+            padding: 15px;
+        }
+
+        table {
+            width: 100%;
+            border: 1px solid #cecece;
+
+        }
+        thead {
+            color: #fff;
+            background-color: #2391d2;
+            text-align: center;
+        }
+        thead th {
+            text-align: center;
+        }
+        tbody td {
+            border: 1px solid #cecece;
+            text-align: center;
+        }
+        tbody tr:nth-child(even){
+            background-color: #efefef;
+        }
+
+
+        header {
+            background: #efefef;
+            padding: 20px;
+        }
+
+        .main {
+            padding: 50px 0;
+        }
+
+
+        .loadingOver {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255,0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease-out;
+        }
+        .loadingOver.active {
+            opacity: 1;
+            pointer-events: initial;
+        }
+        .loadingAnim {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            background-color: rgba(206, 206, 206, 0.28);
+            border-top: 15px solid #ffffff;
+            border-bottom: 15px solid #ffffff;
+            border-left: 15px solid #b50303;
+            border-right: 15px solid #5fa9ad;
+
+            animation: rotate 2s infinite linear;
+
+        }
+
+        @keyframes rotate {
+            0% {transform: translate(-50%,-50%) rotate(0deg);}
+            100% {transform: translate(-50%,-50%) rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <header class="section">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="section-title">Search a product</div>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" id="searchById" placeholder="Seach product by ID">
+                <button id="submitById">Search!</button>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" id="searchByType" placeholder="Search product by TYPE">
+                <button id="submitByType">Search!</button>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" id="searchByPrice" placeholder="Search product by PRICE">
+                <button id="submitByPrice">Search!</button>
+            </div>
+        </div>
+    </header>
+    <div id="errorHolder" class="section error-holder">
+
+    </div>
+    <section class="main">
+        <div class="container-fluid">
+            <div class="col-sm-4">
+                <div class="section-title">All products</div>
+                <table id="prodAll">
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Examine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4">Waiting for results</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <div class="section-title">Similar products</div>
+                <table id="prodSimilar">
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Examine</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4">No results yet</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-sm-4">
+                <div class="section-title">Detailed info</div>
+                <ul id="prodInfo"></ul>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<div id="loadingOver" class="loadingOver active">
+    <div class="loadingAnim"></div>
+</div>
+
+<script src="library.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
