@@ -20,14 +20,19 @@
         function searchProductById(id){
             var promise = new Promise(function(resolve,reject){
                 let i =0;
-                setTimeout(function(){
-                    while(i<catalog.length){
-                        if(id==catalog[i].id){
-                            resolve(catalog[i]);
+                if(parseInt(id, 16) > catalog.length){
+                    reject('Invalid ID: '+ id)
+                } else {
+                    setTimeout(function(){
+                        while(i<catalog.length){
+                            if(parseInt(id,16)==catalog[i].id){
+                                resolve(catalog[i]);
+                            }
+                            i++;
                         }
-                        i++;
-                    }
-                },1000)
+                    },1000)
+                }
+
             })
             return promise;
         };
